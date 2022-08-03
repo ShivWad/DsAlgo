@@ -10,32 +10,43 @@ class Solution
 {
 public:
     // Function to find maximum of each subarray of size k.
-    vector<int> max_of_subarrays(int *arr, int n, int k)
-    {
-
-        vector<int> tempArr;
-
-        for (int i = 0; i < n; i++)
-        {
-            if (i + k <= n)
-            {
-                int max = arr[i];
-
-                for (int j = i; j < i + k; j++)
-                {
-                    if (max < arr[j])
-                    {
-                        max = arr[j];
-                    }
-                }
-                tempArr.push_back(max);
-            }
-        }
-
-        return tempArr;
+    vector<int> max_of_subarrays(int *arr, int n, int k){
         // your code here
+        vector<int> max_of_subarrays(int *arr, int n, int k){
+            // your code here
+
+            vector<int> ansArr;
+    deque<int> tempDeque;
+    int i = 0;
+    int j = 0;
+
+    while (j < n)
+    {
+        while (!tempDeque.empty() && tempDeque.back() < arr[j])
+            tempDeque.pop_back();
+
+        tempDeque.push_back(arr[j]);
+
+        if (j - i + 1 < k)
+        {
+            j++;
+        }
+        else if (j - i + 1 == k)
+        {
+            ansArr.push_back(tempDeque.front());
+
+            if (tempDeque.front() == arr[i])
+                tempDeque.pop_front();
+
+            i++;
+            j++;
+        }
     }
-};
+
+    return ansArr;
+}
+}
+;
 
 //{ Driver Code Starts.
 
