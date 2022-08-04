@@ -10,49 +10,47 @@ class Solution
 {
 public:
     // Function to find maximum of each subarray of size k.
-    vector<int> max_of_subarrays(int *arr, int n, int k){
-        // your code here
-        vector<int> max_of_subarrays(int *arr, int n, int k){
-            // your code here
 
-            vector<int> ansArr;
-    deque<int> tempDeque;
-    int i = 0;
-    int j = 0;
-
-    while (j < n)
+    // your code here
+    vector<int> max_of_subarrays(int *arr, int n, int k)
     {
-        while (!tempDeque.empty() && tempDeque.back() < arr[j])
-            tempDeque.pop_back();
+        // your code here
 
-        tempDeque.push_back(arr[j]);
+        vector<int> ansArr;
+        deque<int> tempDeque;
+        int i = 0;
+        int j = 0;
 
-        if (j - i + 1 < k)
+        while (j < n)
         {
-            j++;
-        }
-        else if (j - i + 1 == k)
-        {
-            ansArr.push_back(tempDeque.front());
+            while (!tempDeque.empty() && tempDeque.back() < arr[j])
+                tempDeque.pop_back();
 
-            if (tempDeque.front() == arr[i])
-                tempDeque.pop_front();
+            tempDeque.push_back(arr[j]);
 
-            i++;
-            j++;
+            if (j - i + 1 < k)
+            {
+                j++;
+            }
+            else if (j - i + 1 == k)
+            {
+                ansArr.push_back(tempDeque.front());
+
+                if (tempDeque.front() == arr[i])
+                    tempDeque.pop_front();
+                i++;
+                j++;
+            }
         }
+
+        return ansArr;
     }
-
-    return ansArr;
-}
-}
-;
+};
 
 //{ Driver Code Starts.
 
 int main()
 {
-
     // int t;
     // cin >> t;
     //  n size of array
