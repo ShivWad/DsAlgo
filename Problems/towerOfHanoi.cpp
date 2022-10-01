@@ -21,7 +21,7 @@ long long toh(int N, int source, int to, int aux)
 int main()
 {
     int n;
-    cin >> n;
+    cin >> n;  
 
     toh(n, 1, 3, 2);
 
