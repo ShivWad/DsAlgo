@@ -17,6 +17,11 @@ public:
         this->data = node->data;
         this->next = node->next;
     }
+    Node()
+    {
+        this->data = 0;
+        this->next = nullptr;
+    }
 };
 
 class LinkedList
@@ -59,6 +64,8 @@ public:
             cout << cur->data << endl;
             cur = cur->next;
         }
+
+        cout << "----------------------------------" << endl;
     }
 
     /**
@@ -215,6 +222,35 @@ public:
         free(pred);
         return this->head;
     }
+
+    /**
+     * @brief Reverse Linked list
+     *
+     */
+    void reverseLinkedList()
+    {
+        Node *curr = head;
+        Node *prev = nullptr;
+        Node *next = nullptr;
+
+        if (this->head == NULL)
+        {
+            cout << "LIST EMPTY";
+            return;
+        }
+
+        while (curr != nullptr)
+        {
+            next = curr->next; // Store the next node before overwriting
+            curr->next = prev; // Reverse the pointer of the current node
+
+            prev = curr; // Update prev for the next iteration
+            curr = next; // Move to the next node
+        }
+        head = prev;
+
+        free(curr);
+    }
 };
 
 /// @brief main function
@@ -225,7 +261,9 @@ int main()
     linkedList.insertAtBeginning(1);
     linkedList.insertAtBeginning(5);
     linkedList.insertAtTheEnd(3);
-    linkedList.deleteAtPosition(2);
+    linkedList.insertAtTheEnd(4);
+    linkedList.insertAtTheEnd(8);
     linkedList.traverseLinkedList();
-    Node *head = linkedList.getHead();
+    linkedList.reverseLinkedList();
+    linkedList.traverseLinkedList();
 }

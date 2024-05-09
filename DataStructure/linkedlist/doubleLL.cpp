@@ -256,6 +256,30 @@ public:
         free(prev);
         free(curr);
     }
+
+    void reverseLinkedList()
+    {
+        if (isEmpty() || head->next == nullptr)
+        {
+            cout << "Empty list or single node, no need to reverse" << endl;
+            return;
+        }
+        DllNode *curr = head;
+        DllNode *prev = nullptr;
+
+        while (curr != nullptr)
+        {
+            // Swap the next and prev pointers
+            DllNode *next = curr->next;
+            curr->next = prev;
+            curr->prev = next;
+
+            // Move to the next node
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
 };
 
 /// @brief main function
@@ -269,7 +293,7 @@ int main()
     dll.insertAtEnd(110);
     dll.insertAtPoistion(123, 2);
     dll.traverseDll();
-    dll.deleteAtPosition(0);
+    dll.reverseLinkedList();
     dll.traverseDll();
 }
 
