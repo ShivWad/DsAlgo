@@ -85,7 +85,7 @@ public:
         {
             if (isEmpty())
             {
-                throw EmptyStackException("This is a custom exception");
+                throw EmptyStackException("Empty stack");
             }
 
             return top->data;
@@ -107,7 +107,7 @@ public:
         {
             if (isEmpty())
             {
-                throw EmptyStackException("This is a custom exception");
+                throw EmptyStackException("Empty Stack");
             }
 
             int data = top->data;
@@ -121,6 +121,7 @@ public:
         {
             cout << e.what() << endl;
         }
+        return 0;
     }
 
     /**
@@ -153,6 +154,7 @@ public:
 int main()
 {
     stack s = stack();
+    s.pop();
     s.push(1);
     s.push(3);
     s.push(5);
